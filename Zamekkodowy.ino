@@ -51,16 +51,14 @@ void setup() {
   // Sekwencja testowa LED i zamka
   for(int i = 0; i < 4; i++){
     digitalWrite(ledGreen, HIGH); 
-    digitalWrite(ledRed, HIGH);    
-    digitalWrite(lock, HIGH);      
+    digitalWrite(ledRed, HIGH);         
     delay(100);                   
     digitalWrite(ledGreen, LOW);   
     digitalWrite(ledRed, LOW);     
-    digitalWrite(lock, LOW);       
     delay(100);                    
   }
 
-  digitalWrite(lock, HIGH);  
+  digitalWrite(lock, LOW);  
 }
 
 void loop() {
@@ -126,7 +124,7 @@ void sprawdzKod(int wiersz) {
   if (kod == key) {  // Sprawdzenie, czy hasło jest poprawne
     lcd.setCursor(0, 0);
     lcd.print("Dobry kod!!!");
-    digitalWrite(lock, LOW);  // Otwórz zamek
+    digitalWrite(lock, HIGH);  // Otwórz zamek
     for (int i = 0; i < 4; i++) {
       digitalWrite(ledGreen, HIGH);  
       tone(buzzer, 1000);  
@@ -136,7 +134,7 @@ void sprawdzKod(int wiersz) {
       delay(200);
     }
     delay(1000);
-    digitalWrite(lock, HIGH);  // Zablokuj zamek
+    digitalWrite(lock, LOW);  // Zablokuj zamek
   } else {
     lcd.setCursor(0, 0);
     lcd.print("Zly kod!!!!");
